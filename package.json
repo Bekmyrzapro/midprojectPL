@@ -1,0 +1,36 @@
+{
+  "name": "game-of-life-webgl",
+  "homepage": "https://piellardj.github.io/game-of-life-webgl",
+  "description": "Game of Life running on GPU",
+  "author": "Jérémie PIELLARD <jeremie.piellard@gmail.com> (https://github.com/piellardj)",
+  "repository": "github:piellardj/game-of-life-webgl",
+  "private": true,
+  "license": "ISC",
+  "scripts": {
+    "pre-commit": "npm run rebuild && npm run lint",
+    "build-demo-js": "npm run webpack-production",
+    "build-page-template": "ts-node-script src/generate-page-template.ts",
+    "build-shaders": "node src/build-shaders.js",
+    "build": "npm run build-page-template && npm run build-shaders && npm run build-demo-js",
+    "rebuild": "npm run clean && npm run build",
+    "clean": "shx rm -rf docs/* **/*generated.*",
+    "lint": "tslint -c src/config/tslint.json -p src/config/tsconfig.json",
+    "webpack-production": "webpack --config src/config/webpack.config.js"
+  },
+  "engine": {
+    "node": ">=16.13.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^16.11.11",
+    "fs-extra": "^10.0.0",
+    "shx": "^0.3.3",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.4.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpage-templates": "github:piellardj/webpage-templates"
+  }
+}
